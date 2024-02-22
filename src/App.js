@@ -34,7 +34,7 @@ export default function Board(){
 
     function restartGame(){
         const squaresCopy = squares.slice()
-        for (var i = 0; i<9; i++){
+        for (let i = 0; i<9; i++){
             squaresCopy[i] = null
         }
         setXMovesNext(true)
@@ -46,7 +46,14 @@ export default function Board(){
         message = "Player: " + winner + " has won!";
     }
     else {
-        message = "Next player: " + (xMovesNext ? "X" : "O");
+        let boardFull = true
+        for (let i = 0; i<9; i++){
+            if (!squares[i]){
+                boardFull = false;
+                break
+            }
+        }
+        message = (boardFull ? "Tie Game! Restart the game to settle the beef!" : ("Next player: " + (xMovesNext ? "X" : "O")))
     }
     return (
         <>
